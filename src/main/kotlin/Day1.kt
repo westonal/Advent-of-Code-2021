@@ -1,5 +1,3 @@
-import kotlin.reflect.KClass
-
 fun main() {
     println("Part 1: ${Day1.part1()} depth increases")
     println("Part 2: ${Day1.part2()} sliding window depth increases")
@@ -7,12 +5,12 @@ fun main() {
 
 class Day1 {
     companion object {
-        fun part1() = Day1::class.input().useLines { lines ->
+        fun part1() = Day1::class.useInput { lines ->
             lines.map { it.toLong() }
                 .countIncreases()
         }
 
-        fun part2() = Day1::class.input().useLines { lines ->
+        fun part2() = Day1::class.useInput { lines ->
             lines.map { it.toLong() }
                 .window(3)
                 .map { it.sum() }
@@ -34,7 +32,3 @@ private fun Sequence<Long>.countIncreases(): Long {
     }
     return count
 }
-
-private fun <T : Any> KClass<T>.input() =
-    this.java.getResource("${this.simpleName}Input.txt")!!.openStream().bufferedReader()
-
